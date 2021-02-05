@@ -1,38 +1,35 @@
 {
-  "name": "react_boiler",
+  "name": "my_language_pal",
   "version": "1.0.0",
-  "description": "",
+  "description": "real-time chat application using socket.io",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server-start": "nodemon server/server.js",
-    "react-dev": "webpack -d --watch"
+    "start": "nodemon server/server.js",
+    "watch": "webpack -d --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jryanwalker93/React_Boiler.git"
+    "url": "git+https://github.com/ShinanSun/My_Language_Pal.git"
   },
-  "author": "",
+  "author": "Shinan Sun",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jryanwalker93/React_Boiler/issues"
-  },
-  "homepage": "https://github.com/jryanwalker93/React_Boiler#readme",
+  "homepage": "https://github.com/ShinanSun/My_Language_Pal.git",
   "dependencies": {
+    "express": "^4.17.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "css-loader": "^4.2.1",
+    "style-loader": "^1.2.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
-    "cors": "^2.8.5",
-    "css-loader": "^4.2.1",
-    "express": "^4.17.1",
-    "mongoose": "^5.10.0",
-    "nodemon": "^2.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "style-loader": "^1.2.1",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "nodemon": "^2.0.4"
   }
 }
