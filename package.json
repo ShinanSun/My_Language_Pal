@@ -16,10 +16,12 @@
   "license": "ISC",
   "homepage": "https://github.com/ShinanSun/My_Language_Pal.git",
   "dependencies": {
+    "css-loader": "^4.2.1",
     "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "css-loader": "^4.2.1",
+    "react-router-dom": "^5.2.0",
+    "socket.io": "^3.1.1",
     "style-loader": "^1.2.1"
   },
   "devDependencies": {
