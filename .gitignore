@@ -1,5 +1,4 @@
 /node_modules
 .DS_Store
-./client/public/bundle.js
+/client/public/bundle.js
 
-bundle.js
