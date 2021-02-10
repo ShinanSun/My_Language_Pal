@@ -9,9 +9,9 @@ const Chat = ({ location }) => {
   //location is a object provide by Router that passed a prop to Chat component;
   const [name, setName] = useState('');
   const [room, setRoom] = useState('');
-
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
@@ -25,12 +25,17 @@ const Chat = ({ location }) => {
 
     socket.on('WELCOME_MESSAGE', (val) => {
       console.log(`what is welcome message`, val);
-      //   setMessage(val);
+      setMessages((messages) => [...messages, val]);
     });
-    console.log(messages, 'messages');
+
     socket.on('NEW_MESSAGE', (val) => {
       console.log('waht is new Message', val);
       setMessages((messages) => [...messages, val]);
+    });
+
+    socket.on('ROOM_USERS', (val) => {
+      console.log('what is room-users', val);
+      setUsers(val.users);
     });
   }, [location.search]); //if name/room changes, Chat component will re-render
 
@@ -46,6 +51,9 @@ const Chat = ({ location }) => {
   return (
     <div>
       <h2>{room}</h2>
+      {users.map((user, index) => {
+        return <div key={index}> {user.name} </div>;
+      })}
       <ScrollToBottom>
         {messages.map((object, index) => {
           return <Message message={object} key={index} name={name} />;

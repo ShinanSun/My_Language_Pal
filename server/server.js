@@ -38,6 +38,10 @@ io.on('connection', (socket) => {
         message: `${name}, has just joined!!`,
       });
 
+    io.to(room).emit('ROOM_USERS', {
+      room,
+      users: findAllUserInCurrentRoom(room),
+    });
     cb();
   });
 
@@ -61,6 +65,10 @@ io.on('connection', (socket) => {
       io.to(removed.room).emit('NEW_MESSAGE', {
         user: '',
         message: `${removed.name} has left this room...  :(`,
+      });
+      io.to(removed.room).emit('ROOM_USERS', {
+        room: removed.room,
+        users: findAllUserInCurrentRoom(removed.room),
       });
     }
     console.log('user has left!!!');
