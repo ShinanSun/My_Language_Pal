@@ -5,6 +5,8 @@ import { io } from 'socket.io-client';
 const socket = io('http://localhost:3000');
 import Message from './Message';
 
+import Box from '@material-ui/core/Box';
+
 const Chat = ({ location }) => {
   //location is a object provide by Router that passed a prop to Chat component;
   const [name, setName] = useState('');

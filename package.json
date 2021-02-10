@@ -17,6 +17,7 @@
   "homepage": "https://github.com/ShinanSun/My_Language_Pal.git",
   "dependencies": {
     "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "css-loader": "^4.2.1",
     "express": "^4.17.1",
     "query-string": "^6.13.8",
