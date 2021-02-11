@@ -26,21 +26,22 @@ io.on('connection', (socket) => {
     if (typeof newUser === 'string') {
       cb(newUser);
     }
-    socket.join(room);
+
+    socket.join(newUser.room);
     socket.emit('WELCOME_MESSAGE', {
       user: '',
-      message: `${name}, welcome to room <<${room}>>`,
+      message: `${newUser.name}, welcome to room: ${newUser.room}`,
     });
     socket.broadcast
-      .to(room) //emit to specific room
+      .to(newUser.room) //emit to specific room
       .emit('WELCOME_MESSAGE', {
         user: '',
-        message: `${name}, has just joined!!`,
+        message: `${newUser.name}, has just joined!!`,
       });
 
-    io.to(room).emit('ROOM_USERS', {
-      room,
-      users: findAllUserInCurrentRoom(room),
+    io.to(newUser.room).emit('ROOM_USERS', {
+      room: newUser.room,
+      users: findAllUserInCurrentRoom(newUser.room),
     });
     cb();
   });
@@ -48,11 +49,12 @@ io.on('connection', (socket) => {
   //for all the SEND_MESSAGE event:
   socket.on('SEND_MESSAGE', (message, cb) => {
     const currentUser = findUser(socket.id);
-
-    io.to(currentUser.room).emit('NEW_MESSAGE', {
-      user: currentUser.name,
-      message,
-    }); //emit to all sockets in the same room
+    if (currentUser) {
+      io.to(currentUser.room).emit('NEW_MESSAGE', {
+        user: currentUser.name,
+        message,
+      }); //emit to all sockets in the same room
+    }
 
     cb();
   });
@@ -68,7 +70,7 @@ io.on('connection', (socket) => {
       });
       io.to(removed.room).emit('ROOM_USERS', {
         room: removed.room,
-        users: findAllUserInCurrentRoom(removed.room),
+        users: findAllUserInCurrentRoom(removed.room.toLowerCase()),
       });
     }
     console.log('user has left!!!');
